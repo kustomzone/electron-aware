@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Heartnett/electron-aware.svg?branch=master)](https://travis-ci.org/Heartnett/electron-aware)
+
 # electron-aware
 A library that enables communication with the main Electron process.
 
