@@ -1,11 +1,16 @@
-# electron-aware [![Build Status](https://travis-ci.org/Heartnett/electron-aware.svg?branch=master)](https://travis-ci.org/Heartnett/electron-aware)
+# electron-aware
+[![Build Status](https://travis-ci.org/Heartnett/electron-aware.svg?branch=master)](https://travis-ci.org/Heartnett/electron-aware) [![depencencies Status](https://david-dm.org/Heartnett/electron-aware.svg)](https://david-dm.org/Heartnett/electron-aware) [![devDependency Status](https://david-dm.org/Heartnett/electron-aware/dev-status.svg)](https://david-dm.org/Heartnett/electron-aware?type=dev) [![Version npm](https://img.shields.io/npm/v/electron-aware.svg?style=flat-square)](https://www.npmjs.com/package/electron-aware) [![npm Downloads](https://img.shields.io/npm/dm/electron-aware.svg?style=flat-square)](https://www.npmjs.com/package/electron-aware) [![Coverage Status](https://coveralls.io/repos/github/Heartnett/electron-aware/badge.svg?branch=master)](https://coveralls.io/github/Heartnett/electron-aware?branch=master)
 A library that enables communication with the main Electron process.
 
 ---
 ## Installation
-With NPM - `npm install electron-aware`
-With Yarn - `yarn add electron-aware`
-
+```sh
+# Install as a development dependency (NPM)
+npm install electron-aware --save-dev
+# OR
+# Install as a development dependency (Yarn)
+yarn add electron-aware --dev
+```
 ---
 ## Usage
 
