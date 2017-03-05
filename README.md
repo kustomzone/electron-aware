@@ -1,10 +1,13 @@
-[![Build Status](https://travis-ci.org/Heartnett/electron-aware.svg?branch=master)](https://travis-ci.org/Heartnett/electron-aware)
-
-# electron-aware
+# electron-aware [![Build Status](https://travis-ci.org/Heartnett/electron-aware.svg?branch=master)](https://travis-ci.org/Heartnett/electron-aware)
 A library that enables communication with the main Electron process.
 
-## Usage
 ---
+## Installation
+With NPM - `npm install electron-aware`
+With Yarn - `yarn add electron-aware`
+
+---
+## Usage
 
 `electron-aware` can be used inside a gulp file to enable live reloading of your electron app.
 
