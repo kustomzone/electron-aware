@@ -9,5 +9,14 @@
   "dependencies": {
     "ultron": "^1.1.0",
     "ws": "^2.2.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-jshint": "^2.0.4",
+    "jshint": "^2.9.4",
+    "jshint-stylish": "^2.2.1"
+  },
+  "scripts": {
+    "test": "gulp test"
   }
 }
