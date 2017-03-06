@@ -1,11 +1,16 @@
 {
   "name": "electron-aware",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A library that enables communication with the main Electron process.",
   "main": "index.js",
   "repository": "https://github.com/Heartnett/electron-aware",
   "author": "Heartnett",
   "license": "MIT",
+  "keywords": [
+    "electron",
+    "livereload-capabilities",
+    "websockets"
+  ],
   "dependencies": {
     "ultron": "^1.1.0",
     "ws": "^2.2.0"
