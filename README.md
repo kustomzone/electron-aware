@@ -48,8 +48,14 @@ const aware = require('electron-aware').main;
 The next bit of code must be called on the `ready` or `activate` app events.
 
 ```javascript
-let window = new BrowserWindow({ /* you options here - its up to you :) */ });
+let window = new BrowserWindow({ /* your options here - its up to you :) */ });
 ...
 // the window parameter is required, in order for electron-aware to work
 aware.initialize(window);
 ```
+
+----
+## Donating
+Support this project and [others by Heartnett](http://www.github.com/Heartnett) via [gratipay](https://gratipay.com/Heartnett/).
+
+[![Support via Gratipay](https://cdn.rawgit.com/gratipay/gratipay-badge/2.3.0/dist/gratipay.svg)](https://gratipay.com/Heartnett/)
