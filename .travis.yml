@@ -7,6 +7,3 @@ branches:
 before_script:
   - yarn global add gulp
 script: yarn test
-addons:
-    code_climate:
-        repo_token: e302adc6dcabd180fca5b5f7da66f792606e25251f4a4146a01504262f550b09
