@@ -1,7 +1,7 @@
 {
   "name": "electron-aware",
   "version": "1.1.3",
-  "description": "A library that enables communication with the main Electron process.",
+  "description": "Library that enables communication with the main Electron process.",
   "main": "index.js",
   "repository": "https://github.com/Heartnett/electron-aware",
   "author": "Heartnett",
