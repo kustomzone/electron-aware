@@ -4,7 +4,7 @@
 
 [![NPM](https://nodei.co/npm/electron-aware.png?downloads=true)](https://nodei.co/npm/electron-aware/)
 
-A library that enables communication with the main Electron process.
+Library that enables communication with the main Electron process.
 
 ---
 ## Installation
@@ -55,7 +55,11 @@ aware.initialize(window);
 ```
 
 ----
+## License
+[MIT](https://github.com/heartnett/electron-aware/blob/master/LICENSE)
+
+----
 ## Donating
-Support this project and [others by Heartnett](http://www.github.com/Heartnett) via [gratipay](https://gratipay.com/Heartnett/).
+Please support this project via [gratipay](https://gratipay.com/Heartnett/).
 
 [![Support via Gratipay](https://cdn.rawgit.com/gratipay/gratipay-badge/2.3.0/dist/gratipay.svg)](https://gratipay.com/Heartnett/)

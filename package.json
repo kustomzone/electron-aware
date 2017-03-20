@@ -12,16 +12,21 @@
     "websockets"
   ],
   "dependencies": {
+    "extend": "^3.0.0",
     "ultron": "^1.1.0",
     "ws": "^2.2.0"
   },
   "devDependencies": {
+    "buble": "^0.15.2",
+    "eslint": "^3.18.0",
     "gulp": "^3.9.1",
-    "gulp-jshint": "^2.0.4",
-    "jshint": "^2.9.4",
-    "jshint-stylish": "^2.2.1"
+    "gulp-buble": "^0.8.0",
+    "gulp-eslint": "^3.0.1",
+    "gulp-uglify": "^2.1.1",
+    "pump": "^1.0.2"
   },
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp lint",
+    "build": "gulp build"
   }
 }

@@ -6,4 +6,5 @@ branches:
     - master
 before_script:
   - yarn global add gulp
+  - yarn global add eslint
 script: yarn test

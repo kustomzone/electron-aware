@@ -1,10 +1,7 @@
-(() => {
-    "use strict";
-    
-    module.exports = require("extend")(
-        { 
-            main: require("./lib/electron-main") 
-        }, 
-        require("./lib/external")
-    );
-})();
+const extend = require("extend");
+const main = require("./dest/electron-main");
+const external = require("./dest/external");
+
+module.exports = extend({ 
+    main:  main
+}, external);

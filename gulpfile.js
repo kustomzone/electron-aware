@@ -1,13 +1,26 @@
 "use strict";
 
 const gulp = require('gulp');
-const jshint = require('gulp-jshint');
-const stylish = require("jshint-stylish");
+const buble = require("gulp-buble");
+const eslint = require('gulp-eslint');
+const pump = require("pump");
+const uglify = require("gulp-uglify");
 
-gulp.task('test', () => {
+const source = "./src/**/*.js";
+
+gulp.task('lint', () => {
     return gulp
-        .src(['./index.js', './lib/**/*.js'])
-        .pipe(jshint())
-        .pipe(jshint.reporter(stylish))
-        .pipe(jshint.reporter('fail'));
+        .src(["./index.js", source])
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failOnError());
+});
+
+gulp.task("build", ["lint"], (callback) => {
+    pump([
+        gulp.src(source),
+        buble(),
+        uglify(),
+        gulp.dest("./dest")
+    ], callback);
 });
