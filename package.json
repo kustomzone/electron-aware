@@ -14,11 +14,11 @@
   "dependencies": {
     "extend": "^3.0.0",
     "ultron": "^1.1.0",
-    "ws": "^2.2.2"
+    "ws": "^2.2.3"
   },
   "devDependencies": {
     "buble": "^0.15.2",
-    "eslint": "^3.18.0",
+    "eslint": "^3.19.0",
     "gulp": "^3.9.1",
     "gulp-buble": "^0.8.0",
     "gulp-eslint": "^3.0.1",
