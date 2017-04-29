@@ -1,52 +1,71 @@
-/*eslint-env browser*/
+const SocketIOClient = require('socket.io-client')
+const Emitter = require('./emitter')
 
-const WebSocket = require("ws");
-const {EventEmitter} = require("events");
-const Ultron = require("ultron");
+/**
+ * Represents a client WebSocket.
+ */
+class Client extends Emitter {
+  /**
+   * Creates a new instance of the Client class.
+   * @param {WebContents} window - Electron browser window object.
+   */
+  constructor (window) {
+    super()
+    /**
+     * @type {WebContents} - Holds an instance of the electron browser window object.
+     */
+    this.window = window
 
-const events = new EventEmitter();
-const ultron = new Ultron(events);
+    /**
+     * @private
+     */
+    this.io = null
 
-class Client {
-    constructor(window) {
-        this.window = window;
-        this.currentCommand = "";
-    }
+    /**
+     * @type {String} - Holds the latest command sent to the Socket server.
+     */
+    this.currentCommand = null
+  }
 
-    log(message, isError) {
-        this.window.executeJavaScript(`console.info("[electron-live] - ${(isError ? "(ERROR) " : "")}${message}");`);
-    }
+  /**
+   * Logs messages to the console.
+   * @param {String} message - Message to be printed to the console.
+   * @param {Boolean} [isError=false] - Determines if the message to be printed is an error message.
+   * @returns {Void}
+   */
+  log (message, isError = false) {
+    this.window.executeJavaScript(`console.info("[electron-aware] - ${(isError ? '(ERROR) ' : '')}${message}");`)
+  }
 
-    on(event, handler) {
-        if(typeof event === "object" && handler === undefined) {
-            Object.keys(event).forEach((name) => {
-                ultron.on(name, event[name]);
-            }, this);
-        }
-        else if(typeof event === "string" && typeof handler === "function") {
-            ultron.on(event, handler);
-        }
-    }
+  /**
+   * Sends data to the Socket server.
+   * @param {String} event - Data to send to the Socket server.
+   * @param {Function} callback - Called when the data has been sent to the Socket server.
+   * @returns {Void}
+   */
+  send (event, callback) {
+    this.currentCommand = event
+    this.io.emit(event, callback)
+  }
 
-    send(event, callback) {
-        if(!this.ws) throw "Call the start method first!";
-        this.currentCommand = event;
-        this.ws.send(event, callback);
-    }
+  /**
+   * Starts the Socket client.
+   * @param {Function} callback - Called once the Socket client is connected.
+   * @returns {Void}
+   */
+  start (callback) {
+    const self = this
+    self.io = SocketIOClient('http://localhost:8087')
 
-    start(callback) {
-        const thiz = this;
-        thiz.ws = new WebSocket("ws://localhost:8087");
+    self.io.on('connect', () => {
+      self.log('connected!')
+      if (callback) callback()
+    })
 
-        thiz.ws.on("open", () => {
-            thiz.log("connected!");
-            if(callback) callback();
-        });
-
-        thiz.ws.on("message", (event) => {
-            events.emit(event);
-        });
-    }
+    self.io.on('message', ({event, args}) => {
+      self.emit(event, args)
+    })
+  }
 }
 
-module.exports = Client;
+module.exports = Client

@@ -1,26 +1,28 @@
-"use strict";
+'use strict'
 
-const gulp = require('gulp');
-const buble = require("gulp-buble");
-const eslint = require('gulp-eslint');
-const pump = require("pump");
-const uglify = require("gulp-uglify");
+const gulp = require('gulp')
+const buble = require('gulp-buble')
+const standard = require('gulp-standard')
+const pump = require('pump')
+const uglify = require('gulp-uglify')
 
-const source = "./src/**/*.js";
+const source = './src/**/*.js'
 
 gulp.task('lint', () => {
-    return gulp
-        .src(["./index.js", source])
-        .pipe(eslint())
-        .pipe(eslint.format())
-        .pipe(eslint.failOnError());
-});
+  return gulp
+        .src(['./index.js', source])
+        .pipe(standard())
+        .pipe(standard.reporter('default', {
+          breakOnError: true,
+          quiet: true
+        }))
+})
 
-gulp.task("build", ["lint"], (callback) => {
-    pump([
-        gulp.src(source),
-        buble(),
-        uglify(),
-        gulp.dest("./dest")
-    ], callback);
-});
+gulp.task('build', ['lint'], (callback) => {
+  pump([
+    gulp.src(source),
+    buble(),
+    uglify(),
+    gulp.dest('./dist')
+  ], callback)
+})

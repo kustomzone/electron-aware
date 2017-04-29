@@ -1,0 +1,1 @@
+var ref=require("events"),EventEmitter=ref.EventEmitter,Emitter=function(){this.events=new EventEmitter};Emitter.prototype.on=function(t,e){this.events.on(t,e)},Emitter.prototype.emit=function(t,e){this.events.emit(t,e)},module.exports=Emitter;

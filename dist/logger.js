@@ -1,0 +1,1 @@
+var chalk=require("chalk"),header=chalk.cyan("[electron-aware]"),error=chalk.red,logger=function(e,r){void 0===r&&(r=!1);var l=r?error("(ERROR) "+e):e;logger.enabled&&console.log(header+" - "+l)};logger.enabled=!0,module.exports=logger;

@@ -1,10 +1,12 @@
 language: node_js
 node_js:
-  - "6"
+  - "7"
 branches:
   only:
     - master
 before_script:
   - yarn global add gulp
-  - yarn global add eslint
-script: yarn test
+  - yarn global add standard
+script:
+  - yarn build
+  - yarn test
