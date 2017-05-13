@@ -36,7 +36,16 @@ function createWindow () {
   })
 
   // initialize electron-aware
-  aware.initialize(win)
+  const awareClient = aware.initialize(win)
+
+  // subscribe to a custom event called 'test-event'
+  // the server will raise this event
+  awareClient.on('test-event', (args) => {
+    // raise the generic 'message' event on the server
+    // the server must subscribe to the 'test-event-ok' event
+    // in order for this to work 
+    awareClient.send('message', {event: 'test-event-ok'})
+  })
 }
 
 // This method will be called when Electron has finished

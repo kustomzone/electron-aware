@@ -34,5 +34,7 @@ module.exports = {
       if (client.currentCommand === 'restart-app') return
       client.send('offline')
     })
+
+    return client
   }
 }

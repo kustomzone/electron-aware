@@ -25,18 +25,18 @@ yarn add electron-aware --dev
 
 ```javascript
 const gulp = require('gulp')
-const aware = require('electron-aware/server')
+const awareServer = require('electron-aware/server')
 
 gulp.task('serve', () => {
   // this will activate electron-aware
-  aware.start()
+  awareServer.start()
   
   // any changes made to the index.html file will refresh the electron app 
-  gulp.watch('./index.html', aware.refresh)
+  gulp.watch('./index.html', awareServer.refresh)
   
   // any changes made to the electron main process file,
   // will cause electron to restart 
-  gulp.watch('./main.js', aware.reload)
+  gulp.watch('./main.js', awareServer.reload)
 });
 ```
 To get your electron app to work with `electron-aware`, as intended, a couple of lines of code need to be added to the main.js file (or whatever you named your electron main process file).
@@ -44,7 +44,7 @@ To get your electron app to work with `electron-aware`, as intended, a couple of
 ```javascript
 const {app, BrowserWindow} = require('electron')
 ...
-// the 'main' property must only be used inside the electron process!
+// the 'main' sub-module must only be used inside the electron process!
 const aware = require('electron-aware/main')
 ```
 
@@ -55,6 +55,31 @@ let window = new BrowserWindow({ /* your options here - its up to you :) */ });
 ...
 // the window parameter is required, in order for electron-aware to work
 aware.initialize(window);
+```
+
+`electron-aware` also allows you to create, subscribe, and raise custom events!
+On the server-side:
+```javascript
+// subscribe to the 'my-custom-event' (raised by the client)
+aware.on('my-custom-event', (args) => {
+    // some logic
+    ...
+    // raise the 'my-other-custom-event' on the client
+    aware.send('my-other-custom-event', /* your arguments here (optional) */)
+})
+```
+On the client-side (electron main process):
+```javascript
+...
+// reference the client object
+const awareClient = aware.initialize(window)
+// subscribe to the 'my-other-custom-event' (raised by the server)
+awareClient.on('my-other-custom-event', (args) => {
+    // some logic
+})
+
+// raise the 'my-custom-event' on the server
+awareClient.send('message', { event: 'my-custom-event', args: /* your arguments here (optional) */ })
 ```
 
 ----

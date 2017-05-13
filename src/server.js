@@ -68,6 +68,17 @@ class Server extends Emitter {
   }
 
   /**
+   * Raises a custom event on the electron application.
+   * @param {String} event - The event to raise.
+   * @param {Object} [args] - Arguments to send.
+   * @param {Boolean} [log] - Determines if a message should be logged to the console.
+   */
+  send (event, args, log = false) {
+    if (log) logger(`calling ${event}...`)
+    this._ioEmit(event, args)
+  }
+
+  /**
    * Refreshes the page on the electron application.
    * @returns {Void}
    */
@@ -123,6 +134,13 @@ class Server extends Emitter {
         logger('electron closed')
         self.emit('electron-closed')
         self.io.close()
+      })
+    })
+
+    socket.on('message', ({event, args}) => {
+      self._run(() => {
+        logger(event)
+        self.emit(event, args)
       })
     })
   }

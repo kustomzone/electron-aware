@@ -44,6 +44,10 @@ describe('electron-aware', () => {
     aware.reload.should.be.a('function')
   })
 
+  describeIt('#send', expectation, () => {
+    aware.send.should.be.a('function')
+  })
+
   describeIt('#start', expectation, () => {
     aware.start.should.be.a('function')
   })
@@ -64,6 +68,11 @@ describe('electron-aware library', () => {
   itAsPromise("should raise the 'electron-reloaded' event, when #reload is called", (done) => {
     aware.on('electron-reloaded', done)
     aware.reload()
+  })
+
+  itAsPromise("should have the client raise the 'test-event-ok' event, when the 'send' function is called with 'test-event'", (done) => {
+    aware.on('test-event-ok', done)
+    aware.send('test-event')
   })
 
   itAsPromise("should raise the 'electron-closed' event, when #close is called", (done) => {
