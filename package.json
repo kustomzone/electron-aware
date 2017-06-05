@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "buble": "^0.15.2",
-    "chai": "^3.5.0",
+    "chai": "^4.0.1",
     "chai-as-promised": "^6.0.0",
     "electron": "1.6.7",
     "gulp": "^3.9.1",
